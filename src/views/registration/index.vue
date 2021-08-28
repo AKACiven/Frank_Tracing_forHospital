@@ -61,7 +61,7 @@ export default {
     statusFilter(status) {
       const statusMap = {
         '处方结束': 'success',
-        '等待处理': 'gray',
+        '等待确认': 'gray',
         '处理中': 'danger'
       }
       return statusMap[status]

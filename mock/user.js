@@ -102,5 +102,25 @@ module.exports = [
         data: 'success'
       }
     }
+  },
+
+  {
+    url: '/user/adminmod',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000
+      }
+    }
+  },
+
+  {
+    url: '/user/adminadd',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000
+      }
+    }
   }
 ]

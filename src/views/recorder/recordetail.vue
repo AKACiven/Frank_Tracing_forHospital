@@ -1,6 +1,9 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="90px">
+      <el-form-item label="状态">
+        <el-tag :type="form.status | statusFilter">{{ form.status }}</el-tag>
+      </el-form-item>
       <el-form-item label="编号" style="width: 40%;">
         <el-input v-model="form.ID" readonly/>
       </el-form-item>
@@ -39,6 +42,16 @@
 import { recordtail, submittee } from '@/api/record'
 
 export default {
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        '处方结束': 'success',
+        '等待确认': 'gray',
+        '处理中': 'danger'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       form: {
@@ -66,7 +79,7 @@ export default {
         confirmButtonText: '前往记录表',
         callback: action => {
           this.$router.push({
-            path: '/record/all'
+            path: '/Record/All'
           })
         }
       })

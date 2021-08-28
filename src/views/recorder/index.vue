@@ -1,6 +1,9 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="90px">
+      <el-form-item label="状态">
+        <el-tag :type="form.status | statusFilter">{{ form.status }}</el-tag>
+      </el-form-item>
       <el-form-item label="编号" style="width: 40%;">
         <el-input v-model="form.ID" readonly/>
       </el-form-item>
@@ -40,6 +43,16 @@
 import { recordtail, submittee } from '@/api/record'
 
 export default {
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        '处方结束': 'success',
+        '等待确认': 'gray',
+        '处理中': 'danger'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       form: {
@@ -49,8 +62,8 @@ export default {
         department: '', // 科室
         datetime: '',
         prescription: '',
-        docfirm: 'true', // 医生确认记录结束
-        patfirm: 'false', // 患者认可record的记录
+        docfirm: '', // 医生确认记录结束
+        patfirm: '', // 患者认可record的记录
         status: '' // 表示当前是否完成整个医疗过程。
         // 首先患者挂号，挂号同时提交一个表单，后端返回record的id给paeient作为凭据，挂号行为写入presription，record从这里开始记录
         // 医生使用患者提供的record的id，分多次提交表单（比如验血时提交一个，输液时提交另一个，最后开药时再提交一个），直至完成整个过程
@@ -60,7 +73,18 @@ export default {
     }
   },
   created() {
-    this.fetchData()
+    if (!this.$route.query.ID) {
+      this.$alert('请先在科室挂号单表点击接手！', '提示', {
+        confirmButtonText: '前往挂号单表',
+        callback: action => {
+          this.$router.push({
+            path: '/record/department'
+          })
+        }
+      })
+    } else {
+      this.fetchData()
+    }
   },
   methods: {
     fetchData() {
@@ -71,6 +95,8 @@ export default {
     },
     onSubmit() {
       this.form.docfirm = 'true'
+      this.form.patfirm = 'false'
+      this.form.status = '等待确认'
       this.$refs.form.validate(valid => {
         if (valid) {
           submittee(this.form).then(() => {
@@ -87,8 +113,6 @@ export default {
         }
       })
     }
-  },
-  mounted() {
   }
 }
 </script>

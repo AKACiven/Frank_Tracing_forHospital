@@ -33,13 +33,13 @@ import Layout from '@/layout'
 export const constantRoutes = [
 
   {
-    path: '/login',
+    path: '/Login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
 
   {
-    path: '/register',
+    path: '/Register',
     component: () => import('@/views/login/register'),
     hidden: true
   },
@@ -61,32 +61,32 @@ export const asyncRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/welcome',
+    redirect: '/Welcome',
     meta: {
       title: '欢迎',
       icon: 'form'
     },
     children: [
       {
-      path: 'welcome',
-      name: 'Welcome',
-      component: () => import('@/views/welcome/index'),
-      meta: { title: '欢迎使用系统', icon: 'form' }
+        path: 'Welcome',
+        name: 'Welcome',
+        component: () => import('@/views/welcome/index'),
+        meta: { title: '欢迎使用系统', icon: 'form' }
       },
       {
-        path: 'adminworkhub',
+        path: 'Adminworkhub',
         name: 'AdminWorkHub',
         component: () => import('@/views/welcome/adminworkhub'),
         meta: {
           roles: ['admin'],
           title: '管理员工作界面',
           icon: 'form' }
-      },
+      }
     ]
   },
 
   {
-    path: '/registration',
+    path: '/Registration',
     component: Layout,
     meta: {
       title: '挂号相关',
@@ -94,45 +94,45 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'action',
+        path: 'Action',
         name: 'handleRegistration',
         component: () => import('@/views/registration/action'),
         meta: { title: '请挂号', icon: 'form' }
       },
       {
-        path: 'index',
+        path: 'Index',
         name: 'Registration',
         component: () => import('@/views/registration/index'),
-        meta: { title: '查看挂号记录', icon: 'form' }
+        meta: { title: '查看历史挂号', icon: 'form' }
       },
     ]
   },
 
   {
-    path: '/record',
+    path: '/Record',
     component: Layout,
     meta: { title: '查看记录', icon: 'table' },
     children: [
       {
-        path: 'all',
+        path: 'All',
         name: 'allRecord',
         component: () => import('@/views/record/index'),
         meta: { title: '全部记录', icon: 'table' }
       },
       {
-        path: 'department',
+        path: 'Department',
         name: 'depRecord',
         component: () => import('@/views/record/department'),
-        meta: { title: '部门记录', icon: 'table' }
+        meta: { title: '科室挂号单', icon: 'table' }
       },
       {
-        path: 'patient',
+        path: 'Patient',
         name: 'patRecord',
         component: () => import('@/views/record/patient'),
-        meta: { title: '患者记录', icon: 'table' }
+        meta: { title: '患者就医记录', icon: 'table' }
       },
       {
-        path: 'recordetail',
+        path: 'Recordetail',
         name: 'RecorDetail',
         component: () => import('@/views/recorder/recordetail'),
         meta: { title: '记录修改界面', icon: 'table' }
@@ -141,18 +141,18 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/recorder',
+    path: '/Recorder',
     component: Layout,
     meta: { title: '记录表单', icon: 'table' },
     children: [
       {
-        path: 'index',
+        path: 'Index',
         name: 'Recorder',
         component: () => import('@/views/recorder/index'),
         meta: { title: '医生记录界面', icon: 'form' }
       },
       {
-        path: 'conrecorder',
+        path: 'Conrecorder',
         name: 'ConRecorder',
         component: () => import('@/views/recorder/conrecorder'),
         meta: { title: '患者确认界面', icon: 'form' }
@@ -161,23 +161,17 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/adminedit',
+    path: '/Adminedit',
     component: Layout,
-    redirect: '/adminedit/userinfo',
+    redirect: '/Adminedit/Userinfo',
     meta: { title: 'ConRecorder', icon: 'form' },
     children: [
       {
-        path: 'userinfo',
+        path: 'Userinfo',
         name: '修改用户信息',
         component: () => import('@/views/admininfoedit/index'),
         meta: { title: '管理员修改用户信息', icon: 'el-icon-s-order' }
-      },
-      {
-        path: 'useradd',
-        name: '添加用户',
-        component: () => import('@/views/admininfoedit/useradd'),
-        meta: { title: '添加用户', icon: 'el-icon-s-order' }
-      },
+      }
     ]
   },
 

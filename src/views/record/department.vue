@@ -67,7 +67,7 @@ export default {
     statusFilter(status) {
       const statusMap = {
         '处方结束': 'success',
-        '等待处理': 'gray',
+        '等待确认': 'gray',
         '处理中': 'danger'
       }
       return statusMap[status]
@@ -96,7 +96,7 @@ export default {
           confirmButtonText: '确认',
           callback: action => {
             this.$router.push({
-              path: '/recorder/index',
+              path: '/Recorder/Index',
               query: {
                 ID: row.ID
               }
