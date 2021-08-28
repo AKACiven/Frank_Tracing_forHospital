@@ -46,19 +46,19 @@ export default {
         ID: '',
         doctor: '',
         patient: '',
-        department: '',//科室
+        department: '', // 科室
         datetime: '',
         prescript: '',
         opinion: '',
-        docfirm: '',//医生确认记录结束
-        patfirm: '',//患者认可record的记录
-        status: '',//表示当前是否完成整个医疗过程。
-        //首先患者挂号，挂号同时提交一个表单，后端返回record的id给paeient作为凭据，挂号行为写入presription，record从这里开始记录
-        //医生使用患者提供的record的id，分多次提交表单（比如验血时提交一个，输液时提交另一个，最后开药时再提交一个），直至完成整个过程
-        //医生在完成整个过程后提交docfirm：‘true’，患者提交patfirm：‘true’，整个record记录结束
-        //这里比较复杂的就是患者查看自己的record这方面的权限问题，还有医生需不需要查看患者历史record，以及医生查看自己提交过的record
-      },
-    };
+        docfirm: '', // 医生确认记录结束
+        patfirm: '', // 患者认可record的记录
+        status: '' // 表示当前是否完成整个医疗过程。
+        // 首先患者挂号，挂号同时提交一个表单，后端返回record的id给paeient作为凭据，挂号行为写入presription，record从这里开始记录
+        // 医生使用患者提供的record的id，分多次提交表单（比如验血时提交一个，输液时提交另一个，最后开药时再提交一个），直至完成整个过程
+        // 医生在完成整个过程后提交docfirm：‘true’，患者提交patfirm：‘true’，整个record记录结束
+        // 这里比较复杂的就是患者查看自己的record这方面的权限问题，还有医生需不需要查看患者历史record，以及医生查看自己提交过的record
+      }
+    }
   },
   created() {
     if (!this.$route.query.ID) {
@@ -66,7 +66,7 @@ export default {
         confirmButtonText: '前往记录表',
         callback: action => {
           this.$router.push({
-            path: '/record/all',
+            path: '/record/all'
           })
         }
       })
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     fetchData() {
-      recordtail({ID:this.$route.query.ID}).then(response => {
+      recordtail({ ID: this.$route.query.ID }).then(response => {
         this.form = response.data
         this.form.ID = this.$route.query.ID
       })
@@ -92,7 +92,7 @@ export default {
               callback: action => {
                 window.location.reload()
               }
-            });
+            })
           })
         } else {
           this.$alert('提交失败！', '消息', {
@@ -105,8 +105,8 @@ export default {
           return false
         }
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

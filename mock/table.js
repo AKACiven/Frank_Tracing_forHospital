@@ -65,6 +65,15 @@ module.exports = [
     }
   },
   {
+    url: '/record/delete',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000
+      }
+    }
+  },
+  {
     url: '/table/userinfo',
     type: 'post',
     response: config => {

@@ -53,21 +53,19 @@ export default {
   created() {
     this.fetchData()
   },
-  methods:{
+  methods: {
     fetchData() {
       getuserinfo().then(response => {
         this.tableData = [response.data]
       })
-    },
+    }
   },
   computed: {
     ...mapGetters([
       'name',
       'roles'
     ])
-  },
-
-
+  }
 }
 </script>
 

@@ -52,7 +52,7 @@
         width="110">
         <template slot-scope="scope">
           <el-button @click="edit(scope.row)" type="text" size="small">修改</el-button>
-          <el-button @click="cover(scope.row)" type="text" size="small">隐藏</el-button>
+          <el-button @click="deleterow(scope.row)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList, recordel } from '@/api/table'
 
 export default {
   filters: {
@@ -90,8 +90,15 @@ export default {
         this.listLoading = false
       })
     },
-    cover(row) {
-      console.log(row)
+    deleterow(row) {
+      recordel(row.ID).then(() => {
+        this.$alert('确认删除？', '警告', {
+          confirmButtonText: '确认',
+          callback: action => {
+            window.location.reload()
+          }
+        })
+      })
     },
     edit(row) {
       this.$router.push({

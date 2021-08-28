@@ -51,7 +51,7 @@
         label="操作"
         width="110">
         <template slot-scope="scope">
-          <el-button @click="takecharge(scope.row)" type="danger" size="mini">锁定</el-button>
+          <el-button @click="takecharge(scope.row)" type="danger" size="mini">接手</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -60,7 +60,7 @@
 
 <script>
 
-import { getDepList } from '@/api/table'
+import { getDepList, recordel } from '@/api/table'
 
 export default {
   filters: {
@@ -91,11 +91,18 @@ export default {
       })
     },
     takecharge(row) {
-      this.$router.push({
-        path: '/recorder/index',
-        query: {
-          ID: row.ID
-        }
+      recordel(row.ID).then(() => {
+        this.$alert('确认接手？', '提示', {
+          confirmButtonText: '确认',
+          callback: action => {
+            this.$router.push({
+              path: '/recorder/index',
+              query: {
+                ID: row.ID
+              }
+            })
+          }
+        })
       })
     }
   }

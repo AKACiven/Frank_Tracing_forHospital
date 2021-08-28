@@ -8,14 +8,6 @@ export function getList(params) {
   })
 }
 
-export function getdep(params) {
-  return request({
-    url: '/departmentlist',
-    method: 'get',
-    params
-  })
-}
-
 export function getDepList(token) {
   return request({
     url: '/record/dep',
@@ -29,6 +21,14 @@ export function getpatList(token) {
     url: '/record/pat',
     method: 'get',
     params: { token }
+  })
+}
+
+export function recordel(data) {
+  return request({
+    url: '/record/delete',
+    method: 'post',
+    data
   })
 }
 

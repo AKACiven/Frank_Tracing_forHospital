@@ -46,7 +46,7 @@
         label="操作"
         width="110">
         <template slot-scope="scope">
-          <el-button @click="deleteBook(scope.row)" type="danger" size="small">删除</el-button>
+          <el-button @click="deleterow(scope.row)" type="danger" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList, recordel } from '@/api/table'
 
 export default {
   filters: {
@@ -71,6 +71,9 @@ export default {
     return {
       list: null,
       listLoading: true,
+      deldata: {
+        row: ''
+      }
     }
   },
   created() {
@@ -84,11 +87,16 @@ export default {
         this.listLoading = false
       })
     },
-    deleteBook(row){
-
-    },
-  },
-  computed: {
-  },
+    deleterow(row) {
+      recordel(row.ID).then(() => {
+        this.$alert('确认删除？', '警告', {
+          confirmButtonText: '确认',
+          callback: action => {
+            window.location.reload()
+          }
+        })
+      })
+    }
+  }
 }
 </script>
