@@ -7,10 +7,10 @@ const records = Mock.mock({
     'department|1': ['眼科', '骨科', '儿科'],
     'prescription': '@sentence(10, 20)',
     'opinion': '@sentence(10, 15)',
-    'status|1': ['under_treatment', 'awaiting', 'finished'],
+    'status|1': ['处理中', '等待处理', '处方结束'],
     'doctor|1': ['王二狗', '黄大丫', '刘小刚'],
     'patient|1': ['徐一狗', '何小丫', '张大刚'],
-    datetime: '@datetime',
+    'datetime': '@datetime',
     'docfirm|1': [true, false],
     'patfirm|1': [true, false]
   }]

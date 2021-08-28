@@ -60,9 +60,9 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        finished: 'success',
-        awaiting: 'gray',
-        under_treatment: 'danger'
+        '处方结束': 'success',
+        '等待处理': 'gray',
+        '处理中': 'danger'
       }
       return statusMap[status]
     }
@@ -80,7 +80,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.data.items
+        this.list = response.data.form
         this.listLoading = false
       })
     },
