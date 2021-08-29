@@ -6,27 +6,22 @@
       </el-form-item>
       <el-form-item label="密码">
         <el-input
-          :key="passwordType"
-          ref="password"
           v-model="form.password"
-          :type="passwordType"
           placeholder="不少于6个字母"
-          name="password"
-          tabindex="2"
           auto-complete="on"
           style="width: 30%;"
         />
       </el-form-item>
       <el-form-item label="出生日期">
         <el-date-picker
-          v-model="form.birthdate"
-          type="datetime"
+          v-model="form.birthdatetime"
+          type="date"
           style="width: 40%;"
           placeholder="选择日期时间">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="用户类型">
-        <el-radio-group v-model="form.roles">
+        <el-radio-group v-model="form.role">
           <el-radio :label="'admin'">管理员</el-radio>
           <el-radio :label="'doctor'">医生</el-radio>
           <el-radio :label="'patient'">患者</el-radio>
@@ -47,8 +42,7 @@
 </template>
 
 <script>
-
-import { adminadd, adminmod } from '@/api/user'
+import { adminadd, adminmod, getUserinfo } from '@/api/user'
 
 export default {
   data() {
@@ -56,14 +50,24 @@ export default {
       form: {
         username: '',
         password: '',
-        birthdate: '',
-        roles: '',
+        birthdatetime: '',
+        role: '',
         gender: ''
-      },
-      passwordType: 'password'
+      }
+    }
+  },
+  created() {
+    if (this.$route.query.username) {
+      this.fetchData()
     }
   },
   methods: {
+    fetchData() {
+      getUserinfo({ username: this.$route.query.username }).then(response => {
+        this.form = response.data
+        this.form.username = this.$route.query.username
+      })
+    },
     useradd() {
       this.$refs.form.validate(valid => {
         if (valid) {

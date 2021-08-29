@@ -55,3 +55,11 @@ export function getUserlist(params) {
   })
 }
 
+export function getUserinfo(params) {
+  return request({
+    url: '/adminedit/userinfo',
+    method: 'get',
+    params
+  })
+}
+

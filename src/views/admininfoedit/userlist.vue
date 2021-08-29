@@ -3,8 +3,10 @@
     <el-backtop></el-backtop>
     <el-table
       v-loading="listLoading"
-      :data="list.filter(data => !search || data.patient.toLowerCase().includes(search.toLowerCase())
-      || data.doctor.toLowerCase().includes(search.toLowerCase()))"
+      :data="list.filter(data => !search || data.username.toLowerCase().includes(search.toLowerCase())
+      || data.birthdatetime.toLowerCase().includes(search.toLowerCase())
+      || data.role.toLowerCase().includes(search.toLowerCase())
+      || data.gender.toLowerCase().includes(search.toLowerCase()))"
       element-loading-text="Loading"
       border
       fit
@@ -16,27 +18,27 @@
           {{ scope.row.username }}
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="datetime" sortable label="创建时间" width="200">
+      <el-table-column align="center" prop="birthdatetime" sortable label="出生日期" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.datetime }}</span>
+          <span>{{ scope.row.birthdatetime }}</span>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="状态" prop="role" width="150" align="center">
+      <el-table-column class-name="status-col" label="用户类型" prop="role" width="150" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.role | roleFilter">{{ scope.row.role }}</el-tag>
+          <el-tag :type="scope.row.role | roleFilter">{{ scope.row.role | rolesFilter }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="性别" width="110" prop="gender" align="center">
         <template slot-scope="scope">
-          {{ scope.row.gender }}
+          {{ scope.row.gender | genderFilter }}
         </template>
       </el-table-column>
       <el-table-column
         align="center"
         fixed="right"
         label="操作"
-        width="150">
+        width="200">
         <template slot="header" slot-scope="scope" >
           <el-input
             v-model="search"
@@ -44,8 +46,7 @@
             placeholder="搜索用户"/>
         </template>
         <template slot-scope="scope">
-          <el-button @click="edituser(scope.row)" type="text" size="small">修改</el-button>
-          <el-button @click="deleteuser(scope.row)" type="text" size="small">删除</el-button>
+          <el-button type="danger" size="small" @click="edituser(scope.row)">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -63,6 +64,21 @@ export default {
         'doctor': 'success',
         'patient': 'gray',
         'admin': 'danger'
+      }
+      return statusMap[role]
+    },
+    genderFilter(role) {
+      const statusMap = {
+        'Male': '男',
+        'Female': '女'
+      }
+      return statusMap[role]
+    },
+    rolesFilter(role) {
+      const statusMap = {
+        'admin': '管理员',
+        'doctor': '医生',
+        'patient': '患者'
       }
       return statusMap[role]
     }
@@ -83,16 +99,6 @@ export default {
       getUserlist().then(response => {
         this.list = response.data.form
         this.listLoading = false
-      })
-    },
-    deleteuser(row) {
-      recordel(row.username).then(() => {
-        this.$alert('删除成功!', '警告', {
-          confirmButtonText: '确认',
-          callback: action => {
-            window.location.reload()
-          }
-        })
       })
     },
     edituser(row) {

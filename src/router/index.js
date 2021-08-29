@@ -72,15 +72,6 @@ export const asyncRoutes = [
         name: 'Welcome',
         component: () => import('@/views/welcome/index'),
         meta: { title: '欢迎使用系统', icon: 'form' }
-      },
-      {
-        path: 'Adminworkhub',
-        name: 'AdminWorkHub',
-        component: () => import('@/views/welcome/adminworkhub'),
-        meta: {
-          roles: ['admin'],
-          title: '管理员工作界面',
-          icon: 'form' }
       }
     ]
   },
@@ -89,6 +80,7 @@ export const asyncRoutes = [
     path: '/Registration',
     component: Layout,
     meta: {
+      roles: ['admin', 'patient'],
       title: '挂号相关',
       icon: 'form'
     },
@@ -97,14 +89,14 @@ export const asyncRoutes = [
         path: 'Action',
         name: 'handleRegistration',
         component: () => import('@/views/registration/action'),
-        meta: { title: '请挂号', icon: 'form' }
+        meta: { roles: ['admin', 'patient'], title: '请挂号', icon: 'form' }
       },
       {
         path: 'Index',
         name: 'Registration',
         component: () => import('@/views/registration/index'),
-        meta: { title: '查看历史挂号', icon: 'form' }
-      },
+        meta: { roles: ['admin', 'patient'], title: '查看历史挂号', icon: 'form' }
+      }
     ]
   },
 
@@ -117,26 +109,20 @@ export const asyncRoutes = [
         path: 'All',
         name: 'allRecord',
         component: () => import('@/views/record/index'),
-        meta: { title: '全部记录', icon: 'table' }
+        meta: { roles: ['admin'], title: '全部记录', icon: 'table' }
       },
       {
         path: 'Department',
         name: 'depRecord',
         component: () => import('@/views/record/department'),
-        meta: { title: '科室挂号单', icon: 'table' }
+        meta: { roles: ['admin', 'doctor'], title: '科室挂号单', icon: 'table' }
       },
       {
         path: 'Patient',
         name: 'patRecord',
         component: () => import('@/views/record/patient'),
-        meta: { title: '患者就医记录', icon: 'table' }
-      },
-      {
-        path: 'Recordetail',
-        name: 'RecorDetail',
-        component: () => import('@/views/recorder/recordetail'),
-        meta: { title: '记录修改界面', icon: 'table' }
-      },
+        meta: { roles: ['admin', 'patient'], title: '患者就医记录', icon: 'table' }
+      }
     ]
   },
 
@@ -149,13 +135,19 @@ export const asyncRoutes = [
         path: 'Index',
         name: 'Recorder',
         component: () => import('@/views/recorder/index'),
-        meta: { title: '医生记录界面', icon: 'form' }
+        meta: { roles: ['admin', 'doctor'], title: '医生记录界面', icon: 'form' }
       },
       {
         path: 'Conrecorder',
         name: 'ConRecorder',
         component: () => import('@/views/recorder/conrecorder'),
-        meta: { title: '患者确认界面', icon: 'form' }
+        meta: { roles: ['admin', 'patient'], title: '患者确认界面', icon: 'form' }
+      },
+      {
+        path: 'Recordetail',
+        name: 'RecorDetail',
+        component: () => import('@/views/recorder/recordetail'),
+        meta: { roles: ['admin'], title: '记录修改界面', icon: 'table' }
       }
     ]
   },
@@ -163,19 +155,19 @@ export const asyncRoutes = [
   {
     path: '/Adminedit',
     component: Layout,
-    meta: { title: 'ConRecorder', icon: 'form' },
+    meta: { roles: ['admin'], title: 'ConRecorder', icon: 'form' },
     children: [
       {
         path: 'Index',
         name: '修改用户信息',
         component: () => import('@/views/admininfoedit/index'),
-        meta: { title: '管理员修改用户信息', icon: 'el-icon-s-order' }
+        meta: { roles: ['admin'], title: '管理员修改用户信息', icon: 'el-icon-s-order' }
       },
       {
         path: 'Userlist',
         name: '用户名单',
         component: () => import('@/views/admininfoedit/userlist'),
-        meta: { title: '用户名单', icon: 'el-icon-s-order' }
+        meta: { roles: ['admin'], title: '用户名单', icon: 'el-icon-s-order' }
       }
     ]
   },

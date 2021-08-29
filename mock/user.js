@@ -2,12 +2,19 @@ const Mock = require('mockjs')
 
 const userlist = Mock.mock({
   'forms|10': [{
-    id: '@id',
     'username': '@name(1, 2)',
-    'gender|1': ['male', 'female'],
+    'gender|1': ['Male', 'Female'],
     'role|1': ['admin', 'patient', 'doctor'],
-    'datetime': '@datetime'
+    'birthdatetime': '@date'
   }]
+})
+
+const userinfo = Mock.mock({
+  'form': {
+    'gender|1': ['Male', 'Female'],
+    'role|1': ['admin', 'patient', 'doctor'],
+    'birthdatetime': '@date'
+  }
 })
 
 const tokens = {
@@ -154,6 +161,18 @@ module.exports = [
     response: config => {
       return {
         code: 20000
+      }
+    }
+  },
+
+  {
+    url: '/adminedit/userinfo',
+    type: 'get',
+    response: config => {
+      const form = userinfo.form
+      return {
+        code: 20000,
+        data: form
       }
     }
   }

@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       emptyGif: 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3',
-      disability: false,
+      disability: false
     }
   },
   computed: {
@@ -42,20 +42,20 @@ export default {
   methods: {
     patRegister() {
       this.$router.push({
-        path: '/pat_register',
+        path: '/Registration/Action'
       })
     },
     departmentcheck() {
       this.$router.push({
-        path: '/record/department',
+        path: '/Record/Department'
       })
     },
     adminwork() {
       this.$router.push({
-        path: '/adminworkhub',
+        path: '/Adminedit/Index'
       })
     }
-  },
+  }
 }
 </script>
 
