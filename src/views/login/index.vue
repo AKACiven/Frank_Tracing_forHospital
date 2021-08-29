@@ -142,7 +142,7 @@ export default {
     },
     handleRegister() {
       this.$router.push({
-        path: '/register',
+        path: '/register'
       })
     }
   }

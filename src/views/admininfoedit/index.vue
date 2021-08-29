@@ -10,7 +10,7 @@
           ref="password"
           v-model="form.password"
           :type="passwordType"
-          placeholder="Password"
+          placeholder="不少于6个字母"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -64,16 +64,6 @@ export default {
     }
   },
   methods: {
-    showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
-      } else {
-        this.passwordType = 'password'
-      }
-      this.$nextTick(() => {
-        this.$refs.password.focus()
-      })
-    },
     useradd() {
       this.$refs.form.validate(valid => {
         if (valid) {
