@@ -163,14 +163,19 @@ export const asyncRoutes = [
   {
     path: '/Adminedit',
     component: Layout,
-    redirect: '/Adminedit/Userinfo',
     meta: { title: 'ConRecorder', icon: 'form' },
     children: [
       {
-        path: 'Userinfo',
+        path: 'Index',
         name: '修改用户信息',
         component: () => import('@/views/admininfoedit/index'),
         meta: { title: '管理员修改用户信息', icon: 'el-icon-s-order' }
+      },
+      {
+        path: 'Userlist',
+        name: '用户名单',
+        component: () => import('@/views/admininfoedit/userlist'),
+        meta: { title: '用户名单', icon: 'el-icon-s-order' }
       }
     ]
   },

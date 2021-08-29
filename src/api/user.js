@@ -46,3 +46,12 @@ export function adminadd(data) {
     data
   })
 }
+
+export function getUserlist(params) {
+  return request({
+    url: '/adminedit/userlist',
+    method: 'get',
+    params
+  })
+}
+

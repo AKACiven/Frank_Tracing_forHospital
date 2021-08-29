@@ -60,7 +60,7 @@
           <el-input
             v-model="search"
             size="mini"
-            placeholder="搜索医生或患者"/>
+            placeholder="搜索信息"/>
         </template>
         <template slot-scope="scope">
           <el-button @click="checkdetail(scope.row)" type="success" size="small">查看详细</el-button>

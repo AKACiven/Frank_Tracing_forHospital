@@ -1,9 +1,20 @@
+const Mock = require('mockjs')
+
+const userlist = Mock.mock({
+  'forms|10': [{
+    id: '@id',
+    'username': '@name(1, 2)',
+    'gender|1': ['male', 'female'],
+    'role|1': ['admin', 'patient', 'doctor'],
+    'datetime': '@datetime'
+  }]
+})
 
 const tokens = {
   admin: 'admin-token',
   doctor: 'doctor-token',
   patient: 'patient-token',
-  Alice: 'admin-token',
+  Alice: 'admin-token'
 }
 
 const users = {
@@ -21,7 +32,7 @@ const users = {
     roles: ['patient'],
     avatar: 'patient.png',
     name: 'Patient'
-  },
+  }
 }
 
 module.exports = [
@@ -51,7 +62,7 @@ module.exports = [
           token,
           role,
           roles,
-          avatar,
+          avatar
         }
       }
     }
@@ -117,6 +128,29 @@ module.exports = [
   {
     url: '/user/adminadd',
     type: 'post',
+    response: config => {
+      return {
+        code: 20000
+      }
+    }
+  },
+
+  {
+    url: '/adminedit/userlist',
+    type: 'get',
+    response: config => {
+      const form = userlist.forms
+      return {
+        code: 20000,
+        data: {
+          form: form
+        }
+      }
+    }
+  },
+
+  {
+    url: 'adminedit/userdel',
     response: config => {
       return {
         code: 20000
