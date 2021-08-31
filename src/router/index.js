@@ -71,7 +71,7 @@ export const asyncRoutes = [
         path: 'Welcome',
         name: 'Welcome',
         component: () => import('@/views/welcome/index'),
-        meta: { title: '欢迎使用系统', icon: 'form' }
+        meta: { title: '欢迎使用系统', icon: 'el-icon-s-home' }
       }
     ]
   },
@@ -82,20 +82,20 @@ export const asyncRoutes = [
     meta: {
       roles: ['admin', 'patient'],
       title: '挂号相关',
-      icon: 'form'
+      icon: 'el-icon-s-ticket'
     },
     children: [
       {
         path: 'Action',
         name: 'handleRegistration',
         component: () => import('@/views/registration/action'),
-        meta: { roles: ['admin', 'patient'], title: '请挂号', icon: 'form' }
+        meta: { roles: ['admin', 'patient'], title: '请挂号', icon: 'el-icon-s-order' }
       },
       {
         path: 'Index',
         name: 'Registration',
         component: () => import('@/views/registration/index'),
-        meta: { roles: ['admin', 'patient'], title: '查看历史挂号', icon: 'form' }
+        meta: { roles: ['admin', 'patient'], title: '查看历史挂号', icon: 'el-icon-s-management' }
       }
     ]
   },
@@ -103,25 +103,25 @@ export const asyncRoutes = [
   {
     path: '/Record',
     component: Layout,
-    meta: { title: '查看记录', icon: 'table' },
+    meta: { title: '查看记录', icon: 'el-icon-notebook-1' },
     children: [
       {
         path: 'All',
         name: 'allRecord',
         component: () => import('@/views/record/index'),
-        meta: { roles: ['admin'], title: '全部记录', icon: 'table' }
+        meta: { roles: ['admin'], title: '全部记录', icon: 'el-icon-notebook-2' }
       },
       {
         path: 'Department',
         name: 'depRecord',
         component: () => import('@/views/record/department'),
-        meta: { roles: ['admin', 'doctor'], title: '科室挂号单', icon: 'table' }
+        meta: { roles: ['admin', 'doctor'], title: '科室挂号单', icon: 'el-icon-notebook-2' }
       },
       {
         path: 'Patient',
         name: 'patRecord',
         component: () => import('@/views/record/patient'),
-        meta: { roles: ['admin', 'patient'], title: '患者就医记录', icon: 'table' }
+        meta: { roles: ['admin', 'patient'], title: '患者就医记录', icon: 'el-icon-notebook-2' }
       }
     ]
   },
@@ -129,25 +129,25 @@ export const asyncRoutes = [
   {
     path: '/Recorder',
     component: Layout,
-    meta: { title: '记录表单', icon: 'table' },
+    meta: { title: '记录表单', icon: 'el-icon-video-camera-solid' },
     children: [
       {
         path: 'Index',
         name: 'Recorder',
         component: () => import('@/views/recorder/index'),
-        meta: { roles: ['admin', 'doctor'], title: '医生记录界面', icon: 'form' }
+        meta: { roles: ['admin', 'doctor'], title: '医生记录界面', icon: 'el-icon-video-camera' }
       },
       {
         path: 'Conrecorder',
         name: 'ConRecorder',
         component: () => import('@/views/recorder/conrecorder'),
-        meta: { roles: ['admin', 'patient'], title: '患者确认界面', icon: 'form' }
+        meta: { roles: ['admin', 'patient'], title: '患者确认界面', icon: 'el-icon-video-camera' }
       },
       {
         path: 'Recordetail',
         name: 'RecorDetail',
         component: () => import('@/views/recorder/recordetail'),
-        meta: { roles: ['admin'], title: '记录修改界面', icon: 'table' }
+        meta: { roles: ['admin'], title: '记录修改界面', icon: 'el-icon-video-camera' }
       }
     ]
   },
@@ -155,19 +155,19 @@ export const asyncRoutes = [
   {
     path: '/Adminedit',
     component: Layout,
-    meta: { roles: ['admin'], title: 'ConRecorder', icon: 'form' },
+    meta: { roles: ['admin'], title: 'ConRecorder', icon: 'el-icon-s-tools' },
     children: [
       {
         path: 'Index',
         name: '修改用户信息',
         component: () => import('@/views/admininfoedit/index'),
-        meta: { roles: ['admin'], title: '管理员修改用户信息', icon: 'el-icon-s-order' }
+        meta: { roles: ['admin'], title: '管理员修改用户信息', icon: 'el-icon-user-solid' }
       },
       {
         path: 'Userlist',
         name: '用户名单',
         component: () => import('@/views/admininfoedit/userlist'),
-        meta: { roles: ['admin'], title: '用户名单', icon: 'el-icon-s-order' }
+        meta: { roles: ['admin'], title: '用户名单', icon: 'el-icon-s-custom' }
       }
     ]
   },

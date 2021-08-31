@@ -105,15 +105,10 @@ export default {
     },
     takecharge(row) {
       recordel(row.ID).then(() => {
-        this.$alert('确认接手？', '提示', {
-          confirmButtonText: '确认',
-          callback: action => {
-            this.$router.push({
-              path: '/Recorder/Index',
-              query: {
-                ID: row.ID
-              }
-            })
+        this.$router.push({
+          path: '/Recorder/Index',
+          query: {
+            ID: row.ID
           }
         })
       })
